@@ -1,11 +1,15 @@
 async function findDuplicates() {
-    const embyServerUrl = document.getElementById('embyServerUrl').value;
+    let embyServerUrl = document.getElementById('embyServerUrl').value.trim();
     const apiKey = document.getElementById('apiKey').value;
     const resultsDiv = document.getElementById('results');
     const loadingOverlay = document.getElementById('loading-overlay');
 
     resultsDiv.innerHTML = '';
     loadingOverlay.classList.remove('hidden');
+
+    if (!/^https?:\/\//i.test(embyServerUrl)) {
+        embyServerUrl = 'http://' + embyServerUrl;
+    }
 
     try {
         const libraries = await fetchLibraries(embyServerUrl, apiKey);
