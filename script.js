@@ -43,7 +43,7 @@ async function fetchLibraries(embyServerUrl, apiKey) {
 }
 
 async function fetchMoviesFromLibrary(embyServerUrl, apiKey, libraryId) {
-    const response = await fetch(`${embyServerUrl}/emby/Items?Recursive=true&ParentId=${libraryId}&IncludeItemTypes=Movie&Fields=Path,ProductionYear&api_key=${apiKey}`);
+    const response = await fetch(`${embyServerUrl}/emby/Items?Recursive=true&ParentId=${libraryId}&IncludeItemTypes=Movie&Fields=Path,ProductionYear,mediasources&api_key=${apiKey}`);
     if (!response.ok) throw new Error(`Failed to fetch movies from library ${libraryId}`);
     const data = await response.json();
     return data.Items || [];
@@ -57,15 +57,16 @@ function findDuplicatesInLibrary(movies) {
         const name = movie.Name;
         const year = movie.ProductionYear;
         const path = movie.Path;
+        const size = movie.MediaSources[0]?.Size || 0;
 
         if (!name) return;
 
         const key = year ? `${name.trim()}_${year}` : name.trim();
         if (!duplicates[key]) duplicates[key] = [];
-        duplicates[key].push({ path, year });
+        duplicates[key].push({ path, year, size });
 
         if (!duplicatesByName[name.trim()]) duplicatesByName[name.trim()] = [];
-        duplicatesByName[name.trim()].push({ path, year });
+        duplicatesByName[name.trim()].push({ path, year, size });
     });
 
     const finalDuplicates = {};
@@ -108,8 +109,8 @@ function downloadDuplicates(libraryName, duplicates) {
     let content = `Duplicates in library: ${libraryName}\n\n`;
     for (const [key, paths] of Object.entries(duplicates)) {
         content += `Duplicate found: ${key}\n`;
-        paths.forEach(({ path, year }) => {
-            content += `  - ${path} (${year})\n`;
+        paths.forEach(({ path, year, size }) => {
+            content += `  - ${path} (${year}) [${size} bytes]\n`;
         });
         content += '\n';
     }
