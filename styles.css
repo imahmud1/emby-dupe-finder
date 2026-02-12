@@ -28,8 +28,23 @@ h1 {
 .input-group {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 20px;
     margin-bottom: 30px;
+}
+
+.input-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.input-field label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #4fc3f7;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-left: 2px;
 }
 
 input, button {
@@ -65,6 +80,29 @@ button:hover {
     background-color: #3db8eb;
     transform: translateY(-2px);
     box-shadow: 0 6px 8px rgba(79,195,247,0.2);
+}
+
+.button-group {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.button-group button {
+    background: #3498db;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+    flex: 1;
+    font-weight: 500;
+}
+
+.button-group button:hover {
+    background: #2980b9;
 }
 
 #results {
@@ -117,7 +155,7 @@ button:hover {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(15, 18, 25, 0.9);
+    background-color: rgba(0f, 18, 25, 0.9);
     display: flex;
     flex-direction: column;
     justify-content: center;
