@@ -349,6 +349,12 @@ function downloadDuplicates(libraryName, duplicates) {
     URL.revokeObjectURL(url);
 }
 
+function escapeHtml(str) {
+    const div = document.createElement('div');
+    div.textContent = str ?? '';
+    return div.innerHTML;
+}
+
 function formatFileSize(bytes) {
     if (bytes === 0) return '0 Bytes';
     
@@ -563,14 +569,14 @@ function showDuplicatesHTML(libraryName, duplicates) {
             `;
             
             row.innerHTML = `
-                <td style="padding: 12px; border-bottom: 1px solid #eee; font-weight: 500; color: #2c3e50;">${movieTitle}</td>
+                <td style="padding: 12px; border-bottom: 1px solid #eee; font-weight: 500; color: #2c3e50;">${escapeHtml(movieTitle)}</td>
                 <td style="padding: 12px; text-align: center; border-bottom: 1px solid #eee; color: #2c3e50;">${displayYear}</td>
                 <td style="padding: 12px; text-align: center; border-bottom: 1px solid #eee; font-weight: 500; color: #2c3e50;">${formattedSize}</td>
                 <td style="padding: 12px; text-align: center; border-bottom: 1px solid #eee; font-family: monospace; color: #2c3e50;">${resolution}</td>
                 <td style="padding: 12px; text-align: center; border-bottom: 1px solid #eee;">
                     <span style="background: ${qualityColor}; color: white; padding: 4px 8px; border-radius: 12px; font-size: 11px; font-weight: bold;">${qualityBadge}</span>
                 </td>
-                <td style="padding: 12px; border-bottom: 1px solid #eee; font-family: monospace; font-size: 12px; color: #34495e; word-break: break-all;" title="${path}">${path}</td>
+                <td style="padding: 12px; border-bottom: 1px solid #eee; font-family: monospace; font-size: 12px; color: #34495e; word-break: break-all;" title="${escapeHtml(path)}">${escapeHtml(path)}</td>
                 <td style="padding: 12px; text-align: center; border-bottom: 1px solid #eee;">
                     <button style="
                         background: #e74c3c;
