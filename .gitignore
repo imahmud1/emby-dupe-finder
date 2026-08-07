@@ -1,0 +1,13 @@
+# AI assistant work directory
+.claude/
+
+# IDE and editor directories
+.vscode/
+.idea/
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+
+# Dependency directories
+node_modules/

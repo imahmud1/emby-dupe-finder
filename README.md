@@ -2,36 +2,107 @@
 
 ## Overview
 
-This project is a web-based tool designed to help Emby users identify duplicate movies in their media libraries. I created this tool after facing a small yet frustrating issue with duplicates in my Emby setup. There are generally two types of duplicates that this tool helps identify:
+This is an enhanced fork of a web-based tool designed to help Emby users identify and manage duplicate movies in their media libraries. The tool addresses common issues with duplicate files, whether they're multiple copies of the same movie or misidentified entries in your library.
 
-1. **Same Movie with Multiple Files**: When you have two or more files of the same movie in your library.
-2. **Misidentified Movies**: When Emby mistakenly identifies one movie as another.
+## Key Features
+
+### 🔍 Smart Duplicate Detection
+
+- **Intelligent Algorithm**: Uses exact name and year matching to identify true duplicates while avoiding false positives with sequels and remakes
+- **Path-Based Year Detection**: Extracts year information from file paths for more accurate duplicate detection
+- **Quality Analysis**: Shows resolution, file size, and quality indicators (4K, 1080p, 720p, SD) for each duplicate
+
+### 📊 Rich Visual Interface
+
+- **Interactive Modal View**: View duplicates in a beautiful, detailed table format with quality badges
+- **Sortable Results**: Duplicates are automatically sorted by resolution and file size (best quality first)
+- **Color-Coded Quality Badges**: Instantly identify 4K, 1080p, 720p, and SD content
+- **Responsive Design**: Modern UI with smooth animations and transitions
+
+### 🗑️ Direct Delete Functionality
+
+- **In-App Deletion**: Delete duplicate movies directly from the web interface
+- **Smart Confirmation**: Confirms deletion before removing items
+- **Real-Time Updates**: Interface updates immediately after deletion
+- **Success Notifications**: Toast notifications provide feedback on operations
+
+### 💾 Persistent Settings
+
+- **Auto-Save**: Server URL and API key are automatically saved to local storage
+- **Quick Access**: No need to re-enter credentials on each visit
+
+### 📥 Export Options
+
+- **Detailed Text Reports**: Download comprehensive duplicate reports with file paths, sizes, resolutions, and years
+- **Formatted Tables**: Reports include ASCII tables for easy reading
+- **Summary Statistics**: Each report includes total duplicate counts and file statistics
+
+### 🔄 Library Management
+
+- **Refresh Library**: Trigger a full Emby library refresh directly from the interface
+- **Open Emby**: Quick access button to open your Emby server in a new tab
+- **Multi-Library Support**: Scans all movie libraries automatically
+
+### 🎨 Enhanced UI/UX
+
+- **Form Labels**: Clear labels above input fields for better usability
+- **Improved Placeholders**: More descriptive placeholder text
+- **Loading Overlay**: Visual feedback during long operations
+- **Celebration Messages**: Encouraging messages when no duplicates are found
+- **Dark Theme**: Modern dark interface with accent colors
 
 ## How It Works
 
-The Emby Duplicate Finder is easy to use and works in any environment. You just need to provide your Emby server's URL and an API key. The tool will then scan your movie libraries for duplicates, comparing movie names and production years.
+1. Enter your Emby server URL (e.g., `localhost:8096`, `192.168.1.100:8096`, or `mydomain.com`)
+2. Provide your Emby API key
+3. Click "Find Duplicate Movies" to scan your libraries
+4. Review duplicates in the interactive modal view
+5. Delete unwanted copies directly from the interface or download a report for manual review
 
-If duplicates are found, the tool displays them by library and provides the option to download a list showing each movie's name and file path. This makes it easy to review and manage duplicates directly from your browser.
+The tool automatically:
 
-## Features
+- Detects `http://` protocol if not specified
+- Saves your credentials for future use
+- Sorts duplicates by quality (highest resolution and largest file first)
+- Updates the interface in real-time as you delete items
 
-- **Simple Setup**: No complex configurations required. Just enter your Emby server URL and API key.
-- **Cross-Platform**: Works in any environment with a modern web browser.
-- **Duplicate Detection**: Identifies duplicates by comparing movie names and production years.
-- **Downloadable Results**: Provides an option to download a list of duplicates, showing the movie names and file paths.
-- **Open Source**: The project is open-source, allowing anyone to contribute or modify the code as needed.
+## Improved Duplicate Detection Algorithm
 
-## Try It Out
+This fork features an enhanced detection algorithm that:
 
-You can try out the Emby Duplicate Finder here:
-[https://imahmud1.github.io/emby-dupe-finder/](https://imahmud1.github.io/emby-dupe-finder/)
+- Uses exact name and year matching to prevent false positives
+- Extracts year information from file paths for better accuracy
+- Avoids grouping sequels or different movies together
+- Normalizes movie names while preserving important information
+- Filters quality indicators without losing movie identity
 
-## Contributing
+## Technical Improvements
 
-If you're interested in tinkering with the code or contributing to the project, visit the GitHub repository:
-[https://github.com/imahmud1/emby-dupe-finder](https://github.com/imahmud1/emby-dupe-finder)
+- **Enhanced Error Handling**: Better error messages and graceful failure handling
+- **API Integration**: Full integration with Emby's REST API for deletion operations
+- **LocalStorage Persistence**: Automatic saving and loading of user preferences
+- **Modular Code**: Well-organized functions for easy maintenance and extension
+- **Console Utilities**: Additional functions for advanced users (export/import settings)
 
-Feel free to fork the repository, submit issues, or create pull requests!
+## Browser Compatibility
+
+Works in all modern browsers that support:
+
+- ES6+ JavaScript
+- LocalStorage API
+- Fetch API
+- CSS Grid and Flexbox
+
+## Usage Tips
+
+- **Quality Comparison**: The interface automatically highlights the best quality copy (green background)
+- **Batch Operations**: Review all duplicates before deleting to make informed decisions
+- **Backup First**: Consider downloading the duplicate report before deleting files
+- **NAS Users**: Note that deletion removes items from Emby; actual file deletion depends on your NAS/server settings
+
+## Credits
+
+This is a fork and enhancement of the original Emby Duplicate Finder by [imahmud1](https://github.com/imahmud1/emby-dupe-finder).
 
 ## License
 
